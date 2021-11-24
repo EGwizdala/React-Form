@@ -5,6 +5,7 @@
   --blue-main: #1985a1;
   --blue-light: #3DC0E1;
   --blue-dark: #13677C;
+  --gray-dark: #46494C;
 }
 
 /* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property */
@@ -42,4 +43,5 @@ table {
 textarea {
   white-space: revert;
 }
+
 

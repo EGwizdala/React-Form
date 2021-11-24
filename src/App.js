@@ -7,6 +7,7 @@ import Phone from './FormElements/Phone';
 import Day from './FormElements/Day';
 import Guests from './FormElements/Guests';
 import Message from './FormElements/Message';
+import Button from './FormElements/Button';
 import PopUp from './FormElements/PopUp';
 
 
@@ -17,9 +18,10 @@ class App extends Component {
     phone: "",
     day: "",
     guestNumber: "",
-    message: "How can we help you?",
+    message: "",
     key: 0,
     messageTable: [],
+    buttonSubmit: false,
 
     errors: {
       name: true,
@@ -57,9 +59,10 @@ class App extends Component {
   handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(e.target.value)
+    console.log(e.target.value, name)
     this.setState({
       [name]: value,
+      
     })
   }
   
@@ -117,11 +120,12 @@ class App extends Component {
     if (validation.correct) {
       this.setState({
         name: "",
-        emial: "",
+        email: "",
         phone: "",
         day: "",
         guestNumber: "",
         message: "",
+        buttonSubmit: true,
         errors: {
           name: true,
           emial: true,
@@ -171,13 +175,14 @@ class App extends Component {
           <div className="form-elements">
           <Name  name={this.state.name} change={this.handleChange} />
             <Email  email={this.state.email} change={this.handleChange}/>
-            <Phone  phone={this.state.phone} change={this.handleChange}/>
+            <Phone activeIcon={this.state.aciveIcon} phone={this.state.phone} change={this.handleChange} />
+            
             <Day day={this.state.day} change={this.handleChange}/>
-            <Guests  guestNumber={this.state.guests} change={this.handleChange} />
+            <Guests  guestNumber={this.state.guestNumber} change={this.handleChange} />
             <Message message={this.state.message} change={this.handleChange}/>
-            <button className="form-element button">Submit</button>
+            < Button buttonSubmit={this.state.buttonSubmit} />
           </div>
-          <div className="pop-up">{popUpMessage}</div>
+          
         </form>
       </div>
     );

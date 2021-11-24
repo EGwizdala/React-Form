@@ -10,11 +10,11 @@ const Guests = (props) => {
     const options = guests.map(guest => {
         return <Options key={guest+1} number={guest+1} />
         })
-    // console.log(guests)
+    console.log(props.guestNumber)
     return (
     <div className="guest-numbers-container" >
         <label className="guest-numbers" htmlFor="number">
-            <div className="material-icons">person_add</div>
+            <div className={props.guestNumber > 0 ? "material-icons icon-active": "material-icons "}>person_add</div>
             <div>Guest number</div>
             <div className="select-wrapper">
                     <select value={props.guestNumber} onChange={props.change} type="select" name="guestNumber" id="guestNumber">
