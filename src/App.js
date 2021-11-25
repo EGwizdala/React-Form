@@ -22,6 +22,8 @@ class App extends Component {
     key: 0,
     messageTable: [],
     buttonSubmit: false,
+    isPopUpVisible: false,
+
 
     errors: {
       name: true,
@@ -45,7 +47,7 @@ class App extends Component {
     const value = this.state.errors[property]
     
     if (value === false) {
-      console.log(this.errorText[property])
+      // console.log(this.errorText[property])
       let messageTable = []
       this.setState(state => {
         messageTable = state.messageTable.concat(this.errorText[property])
@@ -56,15 +58,22 @@ class App extends Component {
     } 
   }
 
+  classToggle = (e) => {
+    console.log(e)
+    this.setState(prevState => ({ isPopUpVisible: !prevState.isPopUpVisible }));
+  };
+    
+
   handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(e.target.value, name)
+    // console.log(e.target.value, name)
     this.setState({
       [name]: value,
-      
     })
   }
+
+
   
   formValidation = () => {
     let name = true;
@@ -78,7 +87,7 @@ class App extends Component {
     const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const regexPhone = /^\d{9}$/;
     const today = new Date;
-    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();  
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();  
 
     if (!this.state.name || this.state.name < 2 && this.state.name > 100 && regexName.test(this.state.name) === false) {
       name = false;
@@ -90,7 +99,7 @@ class App extends Component {
     if (!this.state.phone || regexPhone.test(this.state.phone) === false) {
       phone = false;
     }
-    if (!this.state.day || this.state.day > date) {
+    if (!this.state.day && this.state.day > date) {
       day = false;
     }
     if (this.state.guestNumber == 0 || this.state.guestNumber === null) {
@@ -116,7 +125,7 @@ class App extends Component {
     e.preventDefault();
    
     const validation = this.formValidation();
-    console.log(validation.name)
+    // console.log(validation.name)
     if (validation.correct) {
       this.setState({
         name: "",
@@ -126,6 +135,7 @@ class App extends Component {
         guestNumber: "",
         message: "",
         buttonSubmit: true,
+        isPopUpVisible:false,
         errors: {
           name: true,
           emial: true,
@@ -140,6 +150,7 @@ class App extends Component {
     } else {
       
       this.setState({
+        isPopUpVisible: true,
         errors: {
           name: validation.name,
           email: validation.email,
@@ -166,8 +177,8 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.isPopUpVisible)
     
-    const popUpMessage = this.state.messageTable.map(message => <PopUp key={this.state.key++} text={message}/>)
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit} noValidate>
@@ -184,6 +195,7 @@ class App extends Component {
           </div>
           
         </form>
+        < PopUp messageTable={this.state.messageTable} isPopUpVisible={this.state.isPopUpVisible} classToggle={this.classToggle}/>
       </div>
     );
   }

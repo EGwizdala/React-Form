@@ -10,7 +10,6 @@ const Guests = (props) => {
     const options = guests.map(guest => {
         return <Options key={guest+1} number={guest+1} />
         })
-    console.log(props.guestNumber)
     return (
     <div className="guest-numbers-container" >
         <label className="guest-numbers" htmlFor="number">
