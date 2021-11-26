@@ -1,3 +1,6 @@
+import { ReactComponent as PersonAddSVG } from '../svg/person_add.svg';
+
+
 const Options = (props) => {
     return (
         <option value={props.number}>{props.number}</option>
@@ -13,8 +16,8 @@ const Guests = (props) => {
     return (
     <div className="guest-numbers-container" >
         <label className="guest-numbers" htmlFor="number">
-            <div className={props.guestNumber > 0 ? "material-icons icon-active": "material-icons "}>person_add</div>
-            <div>Guest number</div>
+            < PersonAddSVG  className={props.class} />
+            <div >Guest number</div>
             <div className="select-wrapper">
                     <select value={props.guestNumber} onChange={props.change} type="select" name="guestNumber" id="guestNumber">
                         <option value="0">0</option>

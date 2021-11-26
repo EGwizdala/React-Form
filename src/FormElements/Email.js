@@ -5,7 +5,7 @@ const Email = (props) => {
     return (
     <div >
         <label className="form-element" htmlFor="email">
-            < EmailSVG className={props.email ? "svgIcon icon-active path": "svgIcon"}/>
+            < EmailSVG className={props.class}/>
             <input type="email" id="email" name="email" value={props.email} onChange = {props.change} placeholder="Email" required></input>
         </label>
     </div>

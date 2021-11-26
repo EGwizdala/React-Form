@@ -166,11 +166,7 @@ input::placeholder{
   
 }
 
-svg {
-  height: inherit;
-  width: inherit;
-  fill: white;
-}
+
 
 .guest-numbers-container{
   display: flex;
@@ -192,16 +188,16 @@ svg {
   position: relative;
 }
 
-.material-icons {
-  height: 2rem;
-  width: 10%;
+#svgPersonAdd {
+  justify-self: center;
+  align-self: center;
 }
 
-.material-icons + div {
+#svgPersonAdd + div {
   height: 2rem;
   flex-grow: 1;
   text-align: left;
-  margin-left: 10px;
+  margin-left: 30px;
 }
 
 .select-wrapper {
@@ -286,12 +282,18 @@ textarea {
   fill: var(--blue-dark);
 }
 
+.icon-error{
+  color: red;
+}
+.icon-error path{ 
+  fill: red;
+}
+
 #done {
   height: 60%;
   width: 60%;
+  fill: white;
 }
-
-
 
 .pop-up  {
   width: 30vw;
@@ -336,11 +338,4 @@ textarea {
 }
 
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+

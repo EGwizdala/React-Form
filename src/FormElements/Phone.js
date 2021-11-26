@@ -5,7 +5,7 @@ const Phone = (props) => {
     return (
     <div >
         <label className="form-element" htmlFor="phone">
-            < PhoneSVG className={props.phone ? "svgIcon icon-active path": "svgIcon"}/>
+            < PhoneSVG className={props.class}/>
             <input type="tel" id="phone" name="phone"  value={props.phone} onChange = {props.change} placeholder="Phone Number" required></input>
         </label>
     </div>
