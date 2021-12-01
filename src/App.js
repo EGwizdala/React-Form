@@ -169,7 +169,6 @@ class App extends Component {
         },
         messageTable: [],
       })
-      console.log(this.state.errors)
       const formElements = Object.keys(this.state.errors);
       formElements.forEach(element => this.printError(element))
     }
@@ -181,6 +180,7 @@ class App extends Component {
     const validation = this.formValidation();
     console.log(" render " + this.state.errors.name)
     console.log(validation.name)
+    
     return (
       <React.Fragment>
       <div className="App">

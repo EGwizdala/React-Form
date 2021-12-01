@@ -4,9 +4,14 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
 const Bubble = (props) => {
+    let key = 0;
+    let delay = randomNumber(0, 5);
+    let intViewportHeight = window.innerHeight;
+    let intViewportWidth = window.innerWidth
     return (
-        <svg>
+        <svg key = {key++}>
         <circle
             cx={`${randomNumber(0, 100)}%`}
             cy={`${randomNumber(0, 100)}%`}
@@ -14,10 +19,10 @@ const Bubble = (props) => {
             fill="green"
             class="bubble"
             fillOpacity={`${randomNumber(1, 90) / 100}`}
-        >
-        <animateMotion dur="10s" repeatCount="indefinite"
-                    path={`M ${randomNumber(300, 300)} -3 C 20.748 ${randomNumber(0, 100)} -2.704 -21.994 20.453 59.523 C 43.609 ${randomNumber(100, 200)} 78.251 181.985 40 ${randomNumber(100, 700)} Q 1.749 307.197 14 369.928 Q 64.8 ${randomNumber(0, 400)} 58.998 533.454 C 53.197 566.071 41.149 570.605 26 577 Q 15.937 ${randomNumber(0, 800)} 0 593.${randomNumber(100, 200)}`}
-                />
+            >
+                <animateMotion fill-rule="evenodd" stroke="black" dur="30s" begin={`${delay}s`} repeatCount="indefinite"
+                path={`M-50 65.54s36-36.79 56.31-35.66 38.6 27.31 58.13 26.56 26.34-5.91 37.6-13 30.53-19.52 39.48-19.14 19.48 ${randomNumber(0, 600)} 31.12 19.87 ${randomNumber(0, 600)} 13.2 25.25 13.16S278.24 ${randomNumber(0, 600)} 297 40.76s25.86-17.86 ${randomNumber(0, 600)}-${randomNumber(0, 600)} 48.11 15.42 ${intViewportWidth} ${intViewportHeight}/${randomNumber(1, 10)}`}
+              />
         </circle>
         </svg>
     )
@@ -29,14 +34,13 @@ function Bubbles() {
 
     const bubbles = bubbleArray.map(bubble => {
         return <Bubble />
- 
     })
-    console.log(bubbles)
-    
+
     return (
         <svg className="bubbles">
-            {bubbles}
-        </svg>
+        {bubbles}
+       
+    </svg>
     );      
 }
 

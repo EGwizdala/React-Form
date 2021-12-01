@@ -8,9 +8,7 @@
 
 .bubble {
     fill: var(--blue-main);
-    /* animation: straightLine 2.5s infinite linear; */
 }
-
 
 
 @keyframes straightLine {
