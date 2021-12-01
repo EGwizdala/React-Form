@@ -1,5 +1,5 @@
 # React Form
-Basic form app made with ♥React 
+Basic form app made with ♥ React 
 
 ## Table of contents
 * [General info](#general-info)
