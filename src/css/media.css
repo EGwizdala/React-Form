@@ -1,15 +1,98 @@
-@media (max-width: 599px) {
+@media (max-width: 550px) {
     .App {
-        background-color: darkblue;
-        width: 80vw;
-        height: 90vh;
-        background-color: white;
-        font-family: var(--main-font);
-        border-radius: 35px;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: space-around;
-        align-items: stretch;
-       
+        width: 80%;
+        height: auto;
+        min-width: 120px;
+        min-height: 550px;
+        max-height: none;
       }
+  
+    form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-flow: column wrap;
+      }
+  
+    .form-elements {
+      flex-flow: column nowrap; 
+    }
+  
+    .form-elements > * {
+      margin: 5px 0;
+      width: 100%;
+      height: calc(100% / 5);
+    }
+  
+  .guest-numbers-container{
+    width: 100%;
+    height: calc(100% / 5);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background: none;
+  }
+  
+  .guest-numbers { 
+    width: 70%;
+    height: 100%;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #svgPersonAdd {
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+    width: 12%;
+  }
+  
+  #svgPersonAdd + div {
+    height: 100%;
+    margin-left: 13%;
+  }
+  
+  .message > label {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .message > label > div {
+    width: 100%;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1rem;
+    text-align: left;
+    padding-left: 10%;
+  }
+  
+  textarea {
+    width: 80%;
+    height: 100%; 
+    border: 3px solid var(--blue-main);
+    border-radius: 15px;
+    padding-top: 5px;
+    padding-left: 10px;
+  }
+  
+  .button {
+    min-width: 80px;
+  }
+  
+  
+  .pop-up  {
+    width: 65vw;
+    height: 40vh;
+   
+  }
+   
+  .pop-up > * {
+    font-size: 1.2rem;
+    margin: 10px;
+    font-weight: bolder;
+    color: red; 
+    height: calc(40vh/10);
+  }
   }

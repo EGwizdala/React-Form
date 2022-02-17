@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './css/App.css';
+import './css/app.css';
 import './css/animations.css';
 import Name from './FormElements/Name';
 import Email from './FormElements/Email';
@@ -72,6 +72,7 @@ class App extends Component {
 
   classToggle = () => {
     this.setState(prevState => ({ isPopUpVisible: !prevState.isPopUpVisible }));
+    this.setState(prevState => ({  buttonSubmit: false }));
   };
     
   handleChange = (e) => {
@@ -96,7 +97,10 @@ class App extends Component {
     const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const regexPhone = /^\d{9}$/;
     const today = new Date();
-    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();  
+    const date = today.getTime();
+    console.log(date)
+    const pickedDate = new Date(this.state.day).getTime()
+    
 
     if (!this.state.name || this.state.name < 2 && this.state.name > 100 && regexName.test(this.state.name) === false) {
       name = false;
@@ -108,7 +112,7 @@ class App extends Component {
     if (!this.state.phone || regexPhone.test(this.state.phone) === false) {
       phone = false;
     }
-    if (!this.state.day) {
+    if (!this.state.day || pickedDate < date) {
       day = false;
     }
     if (!this.state.guestNumber || this.state.guestNumber === 0 || this.state.guestNumber === null) {
@@ -119,7 +123,7 @@ class App extends Component {
     } else {
       correct = false
     }
-
+   
     return ({
       name,
       email,
@@ -128,36 +132,38 @@ class App extends Component {
       guestNumber,
       correct
     })
+    
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+    
     const validation = this.formValidation();
-    if (validation.correct) {
-      this.setState({
-        name: "",
-        email: "",
-        phone: "",
-        day: "",
-        guestNumber: "",
-        message: "",
-        buttonSubmit: true,
-        isPopUpVisible: true,
-        flag: true,
-        errors: {
-          name: true,
-          email: true,
-          phone: true,
-          day: true,
-          guestNumber: true,
-          correct: true,
-        },
-        messageTable: ["See you soon! Thank you!"],
+
+    const newState = validation.correct ? {
+      // correctState
+      name: "",
+      email: "",
+      phone: "",
+      day: "",
+      guestNumber: "",
+      message: "",
+      buttonSubmit: true,
+      isPopUpVisible: true,
+      flag: true,
+      errors: {
+        name: true,
+        email: true,
+        phone: true,
+        day: true,
+        guestNumber: true,
+        correct: true,
+      },
+      messageTable: ["See you soon! Thank you!"],
       
-      })
-    } else {
-      this.setState({
-        flag: false,
+    } : {
+      //error state
+      flag: false,
         isPopUpVisible: true,
         errors: {
           name: validation.name,
@@ -168,19 +174,20 @@ class App extends Component {
           correct: validation.correct,
         },
         messageTable: [],
-      })
-      const formElements = Object.keys(this.state.errors);
-      formElements.forEach(element => this.printError(element))
-    }
+    };
     
+    this.setState(
+      newState,
+      () => { // callback to execute after the state is updated
+        Object.keys(this.state.errors).forEach(element => this.printError(element));
+      }
+    )
   }
 
 
   render() {
-    const validation = this.formValidation();
-    console.log(" render " + this.state.errors.name)
-    console.log(validation.name)
     
+
     return (
       <React.Fragment>
       <div className="App">
